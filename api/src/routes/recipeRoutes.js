@@ -1,7 +1,8 @@
 const { Router } = require('express');
-const { Op } = require('sequelize');
-const { Recipe } = require('../db')
+const { Recipe, TypeDiet_ofRecipe } = require('../db')
+const { getAllRecipes, getRecipeById } = require('./controllers/getRecipes')
 const router = Router();
+
 
 router.get('/', async (req,res)=>{
 /* *******\recipes?name=".....": 
@@ -10,43 +11,48 @@ router.get('/', async (req,res)=>{
 *    *Si no existe ninguna receta mostrar el mensaje
 *     adecuado.
 ***********************************************************/
-    
     const {name} = req.query;   
     try {
-    
-        const recipes = await Recipe.findAll({
-            where: {
-                name: {[Op.like]: `%${name}%`}
-            }
-        })
-
-        if(recipes.length === 0) throw new Error('No se encontró ninguna receta');
-
-        return res.status(200).send(recipes)
+        const recipes = await getAllRecipes(name);
+        if (!recipes.length) throw new Error('no se encontraron recetas')
+        return res.status(200).send(recipes);
     } catch (error) {
         return res.status(404).send(error.message);
-    }
-
+    }  
 });
 
 router.get('/:id', async (req,res)=>{
-/* *******\recipes?name=".....": 
+/* *******\/recipes/:{idReceta}
 *    *Obtener el detalle de una receta en particular.
-*    *Debe traer solo los datos pedidos de la ruta de
+*    *Debe traer solo los datos pedidos en la ruta de
 *     detalle de receta.
-*    *Incluir los tipos de recetas asociados.
+*    *Incluir los tipos de dietas asociados.
 ***********************************************************/
-const {id} = req.params
-res.send(`Estas buscando la receta con id: ${id}? Por que? Esta base de datos esta vacia por el momento`)
+    const {id} = req.params
+    try {
+        const recipe = await getRecipeById(id)
+        return res.status(200).send(recipe);
+    } catch (error) {
+        return res.status(404).send(error.message);
+    }
 });
 
 router.post('/', async (req,res)=>{
-/* *******\recipes?name=".....": 
+/* *******\/recipes: 
 *    *Recibe los datos recolectados desde el formulario
 *     controlado de la ruta de creacion de recetas por body.
 *    *Crea una receta en la base de datos relacionada con
 *     sus tipos de dietas.
 ***********************************************************/
+    const { name, summary } = req.body;
+    try {
+        if(!name || !summary) throw new Error('No se proporcionaron todos los datos para la creacion de una receta.');
+        const newRecipe = await Recipe.create(req.body);
+        // TypeDiet_ofRecipe.addRecipes(newRecipe);
+        res.status(200).send(newRecipe);
+    } catch (error) {
+        return res.status(404).send(error.message);
+    }
 })
 
 module.exports = router;

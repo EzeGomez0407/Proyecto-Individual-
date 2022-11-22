@@ -18,20 +18,28 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn, Diet } = require('./src/db.js');
+const { getDiets } = require('./src/routes/controllers/getDiets.js');
+
+
+const loaderDiets = async()=>{
+  const diets = await getDiets();
+
+  try {
+    diets.forEach(async (diet)=>{
+      await Diet.findOrCreate({where: {name: diet}})
+    });
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 // Syncing all the models at once.
+conn.sync({ force: true }).then(() => {
+  server.listen(3001, async () => {
 
-server.listen(3001, ()=>{
-
-  conn.sync({force: true})
-  console.log('Servidor abierto en puerto 3001');
-
-})
-
-// conn.sync({ force: true }).then(() => {
-//   server.listen(3001, () => {
-//     console.log('%s listening at 3001'); // eslint-disable-line no-console
+    await loaderDiets()
+    console.log('Servidor abierto en puerto 3001'); // eslint-disable-line no-console
      
-//   });
-// });
+  });
+});
