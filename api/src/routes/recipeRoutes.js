@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { Recipe, TypeDiet_ofRecipe } = require('../db')
-const { getAllRecipes, getRecipeById } = require('./controllers/getRecipes')
+const { Recipe, Diet } = require('../db')
+const { getAllRecipes } = require('./controllers/getRecipes')
 const router = Router();
 
 
@@ -14,8 +14,11 @@ router.get('/', async (req,res)=>{
     const {name} = req.query;   
     try {
         const recipes = await getAllRecipes(name);
-        if (!recipes.length) throw new Error('no se encontraron recetas')
-        return res.status(200).send(recipes);
+        
+        !recipes.length ?
+        res.send('No se encontraron Recetas'):
+        res.status(200).send(recipes);
+        return
     } catch (error) {
         return res.status(404).send(error.message);
     }  
@@ -30,8 +33,11 @@ router.get('/:id', async (req,res)=>{
 ***********************************************************/
     const {id} = req.params
     try {
-        const recipe = await getRecipeById(id)
-        return res.status(200).send(recipe);
+        const allRecipes = await getAllRecipes();
+
+        const recipe = allRecipes.filter(r=> r.id == id);
+        recipe.length ? res.send(recipe) :
+        res.send('No se encontro la receta');
     } catch (error) {
         return res.status(404).send(error.message);
     }
@@ -44,14 +50,36 @@ router.post('/', async (req,res)=>{
 *    *Crea una receta en la base de datos relacionada con
 *     sus tipos de dietas.
 ***********************************************************/
-    const { name, summary } = req.body;
+    const { name,
+            summary, 
+            healthScore,
+            steps,
+            createInDB,
+            diets,} = req.body;
     try {
         if(!name || !summary) throw new Error('No se proporcionaron todos los datos para la creacion de una receta.');
-        const newRecipe = await Recipe.create(req.body);
-        // TypeDiet_ofRecipe.addRecipes(newRecipe);
-        res.status(200).send(newRecipe);
+
+        const newRecipe = await Recipe.create({
+            name,
+            summary,
+            healthScore,
+            steps,
+            createInDB
+        });
+        
+        const dietsDb = await Diet.findAll({
+            where: {name: diets}
+        });
+        await newRecipe.addDiet(dietsDb);
+        const recipe = await Recipe.findByPk(newRecipe.id,{
+            include: {
+                model: Diet
+            }
+        })
+
+        res.status(200).send(recipe);
     } catch (error) {
-        return res.status(404).send(error.message);
+        return res.send(error.message);
     }
 })
 

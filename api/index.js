@@ -35,11 +35,17 @@ const loaderDiets = async()=>{
 }
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, async () => {
+// conn.sync({ force: true }).then(() => {
+//   server.listen(3001, async () => {
 
-    await loaderDiets()
-    console.log('Servidor abierto en puerto 3001'); // eslint-disable-line no-console
+//     await loaderDiets()
+//     console.log('Servidor abierto en puerto 3001'); // eslint-disable-line no-console
      
-  });
-});
+//   });
+// });
+
+server.listen(3001, async ()=>{
+  conn.sync({force:true});
+  await loaderDiets()
+  console.log('Servidor abierto en puerto 3001');
+})

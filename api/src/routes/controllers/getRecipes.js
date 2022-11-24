@@ -1,42 +1,74 @@
 const axios = require('axios');
 const { Op } = require('sequelize');
-const { Recipe } = require('../../db');
-const { API_KEY } = process.env
+const { Recipe, Diet } = require('../../db');
+const { API_KEY, API_MOCKED } = process.env
+
+const getAllDataBase = async ()=>{
+    const recipesInfo = await Recipe.findAll({
+        include: {
+            model: Diet,
+            attributes: ['name']
+        }
+    });
+    
+    const recipesFilter = await recipesInfo.map( r => {
+        return {
+            id: r.id,
+            name: r.name,
+            healthScore: r.healthScore,
+            diets: r.Diets.map(d => d.name),
+            createInDB: r.createInDB
+        }
+    })
+
+    return recipesFilter;
+}
+
+const getAllApi = async ()=>{
+    // const recipesInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=60&addRecipeInformation=true`).then(response => response.data.results);
+    // RECORDAR DESCOMENTAR Y COMENTAR LA DE ABAJO------------------------------------------------------------
+    const recipesInfo = await axios.get(API_MOCKED).then(response => response.data.results);
+
+    const recipesFilter = recipesInfo.map( r => {
+        return {
+            id: r.id,
+            name: r.title,
+            healthScore: r.healthScore,
+            diets: r.diets,
+            dishTypes: r.dishTypes,
+            analyzedInstructions: r.analyzedInstructions,
+            createInDB: false
+        }
+    });
+
+    return recipesFilter;
+}
+
 
 const getAllRecipes = async (wordKey)=>{
 
-    const recipesApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${wordKey}&apiKey=${API_KEY}`).then(response => response.data.results);
+    const recipesApi = await getAllApi();
+    const recipesDb = await getAllDataBase();
     
-    const recipesDb = await Recipe.findAll({
-        where: { name: {[Op.iLike]: `%${wordKey}%`}}
-    })
-
-    const allRecipes = recipesApi.concat(recipesDb);
-    return allRecipes;
-}
-
-const getRecipeById = async (id)=>{
-    let recipeById = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
-        .then(response => response.data)
-        .then(recipe => {
-            return {
-                id: recipe.id,
-                name: recipe.title,
-                imamge: recipe.image,
-                healthScore: recipe.healthScore,
-                diets: recipe.diets,
-                summary: recipe.summary
-            }
-        })
-
-    if(!recipeById){
-        recipeById = await Recipe.findByPk(id);
+    if(!wordKey){
+        const allRecipes = recipesApi.concat(recipesDb);
+        return allRecipes;
     }
+    
+    const allRecipes =  recipesApi.concat(recipesDb).reduce((arrRecipe, rCurrent) => {
 
-    return recipeById;
+        if(rCurrent.name.toLowerCase().includes(wordKey)){
+            arrRecipe.push(rCurrent);
+        }else if(rCurrent.diets.includes(wordKey.toLowerCase())){
+            arrRecipe.push(rCurrent);
+        }
+        return arrRecipe;
+    },[]);
+
+    return allRecipes;
 }
 
 module.exports = {
     getAllRecipes,
-    getRecipeById
+    // getRecipeById
 }
