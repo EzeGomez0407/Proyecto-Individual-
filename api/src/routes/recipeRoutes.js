@@ -17,11 +17,26 @@ router.get('/', async (req,res)=>{
         
         !recipes.length ?
         res.send('No se encontraron Recetas'):
-        res.status(200).send(recipes);
+        res.send(recipes);
         return
     } catch (error) {
         return res.status(404).send(error.message);
     }  
+});
+
+router.get('/filter', async (req,res)=>{
+// esta ruta devuelve las recetas filtradas por dieta
+//********************************************************
+    const { diet } = req.query;
+
+    try {
+        const recipesAll = await getAllRecipes();
+        const recipes = recipesAll.filter(r => r.diets.includes(diet))
+
+        return res.send(recipes)
+    } catch (error) {
+        return res.send(error.message);
+    }
 });
 
 router.get('/:id', async (req,res)=>{

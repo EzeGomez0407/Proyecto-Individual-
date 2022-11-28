@@ -1,7 +1,9 @@
 import axios from 'axios'
 
-const GET_RECETAS = 'GET_RECETAS';
-const GET_RECETA_ID = 'GET_RECETA_ID';
+export const GET_RECIPES = 'GET_RECIPES';
+export const GET_RECIPES_BY_DIET = 'GET_RECIPES_BY_DIET';
+export const GET_RECIPES_ID = 'GET_RECIPES_ID';
+export const GET_DIETS = 'GET_DIETS'
 
 // Todo esto sera de prueba******************************************************
 // let idNum = 1;
@@ -374,10 +376,26 @@ const GET_RECETA_ID = 'GET_RECETA_ID';
 // }
 // *****************************************************************************************
 
-export const getAllRecetas = ()=>{
-    return function(dispatch){
+export const getAllRecipes = ()=>(
+    function(dispatch){
         axios.get('http://localhost:3001/recipes')
-        .then((response) => response.data)
-        .then((data) => dispatch({type: GET_RECETAS, payload: data}));
+            .then((response) => response.data)
+            .then((data) => dispatch({ type: GET_RECIPES, payload: data }));
     }
-}
+)
+
+export const getDiets = ()=>(
+    function(dispatch){
+        axios.get('http://localhost:3001/diets')
+            .then((response) => response.data)
+            .then((data) => dispatch({ type: GET_DIETS, payload: data }));
+    }
+);
+
+export const getRecipesByDiet = (diet)=>(
+    function(dispatch){
+        axios.get(`http://localhost:3001/recipes/filter?diet=${diet}`)
+            .then((response) => response.data)
+            .then((data) => dispatch({ type: GET_RECIPES_BY_DIET, payload: data }))
+    }
+);

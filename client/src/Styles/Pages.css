@@ -1,0 +1,19 @@
+.div-pages{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #fff6;
+}
+.button-pages{
+    background: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
+.icon-button{
+    height: 20px;
+    width: auto;
+}
