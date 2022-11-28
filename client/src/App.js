@@ -1,9 +1,14 @@
-import './App.css';
+import { React } from 'react';
+import { Route } from 'react-router-dom';
+import './Styles/App.css';
+import NavBar from './Components/Navbar';
+import Home from './Components/Home';
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Food</h1>
+      <Route path='/' component={NavBar}/>
+      <Route exact path='/' component={Home}/>
     </div>
   );
 }

@@ -33,6 +33,7 @@ const getAllApi = async ()=>{
         return {
             id: r.id,
             name: r.title,
+            image: r.image,
             healthScore: r.healthScore,
             diets: r.diets,
             dishTypes: r.dishTypes,
