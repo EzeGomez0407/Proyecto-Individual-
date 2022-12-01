@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDiets } from '../Redux/Actions';
+import '../Styles/Filter.css';
 
 const Filter = (props)=>{
 
     const dispatch = useDispatch();
     const diets = useSelector( state => state.diets );
-
-    
 
     useEffect(()=>{
 

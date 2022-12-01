@@ -4,7 +4,8 @@ export const GET_RECIPES = 'GET_RECIPES';
 export const GET_RECIPES_BY_DIET = 'GET_RECIPES_BY_DIET';
 export const GET_RECIPES_ID = 'GET_RECIPES_ID';
 export const GET_DIETS = 'GET_DIETS'
-
+export const GET_RECIPES_ORDERED = 'GET_RECIPES_ORDERED'
+export const GET_SEARCH_RECIPES = 'GET_SEARCH_RECIPES'
 // Todo esto sera de prueba******************************************************
 // let idNum = 1;
 
@@ -381,7 +382,7 @@ export const getAllRecipes = ()=>(
         axios.get('http://localhost:3001/recipes')
             .then((response) => response.data)
             .then((data) => dispatch({ type: GET_RECIPES, payload: data }));
-    }
+    } 
 )
 
 export const getDiets = ()=>(
@@ -399,3 +400,51 @@ export const getRecipesByDiet = (diet)=>(
             .then((data) => dispatch({ type: GET_RECIPES_BY_DIET, payload: data }))
     }
 );
+
+export const getRecipesOrdered = (recipes,ordering)=>{
+    const { abc, score } = ordering;
+    /* 
+    abc: {
+        order: A-z || Z-a
+        on: false || true
+    }
+    score: {
+        order: Mayor || Menor
+        on: false || true
+    }
+     */
+    if(abc.on){
+        // console.log(ordering)
+        if(abc.order === 'A-z'){
+            recipes.sort((a,b)=>{
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                return 0
+            })
+            
+        } else if(abc.order === 'Z-a'){
+            recipes.sort((a,b)=>{
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                return 0;
+            });
+        }
+
+    }else if(score.on){
+        if(score.order === 'Mayor'){
+            recipes.sort((a,b)=> b.healthScore - a.healthScore);
+        }else if(score.order === 'Menor'){
+            recipes.sort((a,b)=> a.healthScore - b.healthScore);
+        }
+    }
+    
+    return { type: GET_RECIPES_ORDERED, payload: recipes}
+}
+
+export const getSearchRecipes = (word)=>(
+    function (dispatch){
+        axios.get(`http://localhost:3001/recipes?name=${word}`)
+            .then((response) => response.data)
+            .then((data) => dispatch({ type: GET_SEARCH_RECIPES, payload: data }))
+    }
+)

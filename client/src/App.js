@@ -7,8 +7,13 @@ import Home from './Components/Home';
 function App() {
   return (
     <div className="App">
-      <Route path='/' component={NavBar}/>
-      <Route exact path='/' component={Home}/>
+      <Route path='/'>
+        <NavBar/>
+      </Route>
+
+      <Route exact path='/'>
+        <Home/>
+      </Route>
     </div>
   );
 }
