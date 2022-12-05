@@ -51,7 +51,7 @@ router.get('/:id', async (req,res)=>{
         const allRecipes = await getAllRecipes();
 
         const recipe = allRecipes.filter(r=> r.id == id);
-        recipe.length ? res.send(recipe) :
+        recipe.length ? res.send(recipe[0]) :
         res.send('No se encontro la receta');
     } catch (error) {
         return res.status(404).send(error.message);
@@ -65,10 +65,11 @@ router.post('/', async (req,res)=>{
 *    *Crea una receta en la base de datos relacionada con
 *     sus tipos de dietas.
 ***********************************************************/
+    console.log(req.body);
     const { name,
             summary, 
             healthScore,
-            steps,
+            instructions,
             createInDB,
             diets,} = req.body;
     try {
@@ -78,7 +79,7 @@ router.post('/', async (req,res)=>{
             name,
             summary,
             healthScore,
-            steps,
+            instructions: instructions || ['asdaa,asasd'],
             createInDB
         });
         
@@ -86,13 +87,10 @@ router.post('/', async (req,res)=>{
             where: {name: diets}
         });
         await newRecipe.addDiet(dietsDb);
-        const recipe = await Recipe.findByPk(newRecipe.id,{
-            include: {
-                model: Diet
-            }
-        })
-
-        res.status(200).send(recipe);
+        
+        const recipes = await getAllRecipes();
+        console.log(req.body);
+        res.status(200).send(recipes);
     } catch (error) {
         return res.send(error.message);
     }

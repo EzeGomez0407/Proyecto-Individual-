@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 .App {
-  text-align: center;
-  background-color: #282c34;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; */
+  height: 100vh;
+}
+
+@media (min-width: 800px){
+  .App{
+  background-size: contain;
+  }
 }

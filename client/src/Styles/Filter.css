@@ -1,7 +1,12 @@
 .contain-filter{
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    margin: 20px;
+}
+.filter{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fffa;
+    font-weight: bold;
 }

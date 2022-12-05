@@ -21,8 +21,8 @@ module.exports = (sequelize) => {
     healthScore: {
       type: DataTypes.FLOAT
     },
-    steps: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
+    instructions: {
+      type: DataTypes.STRING,
       // defaultValues: []
     },
     createInDB: {

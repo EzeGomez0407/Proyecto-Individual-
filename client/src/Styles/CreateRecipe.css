@@ -1,0 +1,136 @@
+.divForm{
+    width: 60%;
+    height: 85vh;
+    margin: 0 auto;
+    margin-top: 20px;
+    background: rgba(67, 66, 66, 0.34);
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 30px 20px;
+}
+.h2-title{
+    margin-left: 70px;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+.form-create{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.select-dieta{
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #fffa;
+    font-weight: bold;
+}
+.labelForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    padding: 10px 40px;
+}
+.input-create{
+    border-radius: 18px;
+    padding: 7px;
+    background-color: #fffa;
+    font-size: 16px;
+}
+
+textarea{
+    width: 100%;
+    height: 6rem;
+    border-radius: 18px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #fffa;
+    margin-bottom: 20px;
+}
+
+.diets-selects{
+    margin-bottom: 30px;
+    width: 20%;
+}
+.btn-quitDiet{
+    background: none;
+    color: #fff;
+    border: 1px solid #ccc;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border-radius: 50%;
+}
+.btn-quitDiet:hover{
+    background-color: #f248;
+    color: #000;
+}
+.li-diet{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 6px;
+    font-size: 18px;
+}
+/* BUTTON RECIPE CREATE */
+.button {
+    text-decoration: none;
+    --color: #3e964b;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+   }
+   
+   .button::before, .button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+   }
+   
+   .button::before {
+    top: -1em;
+    left: -1em;
+   }
+   
+   .button::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+   }
+   
+   .button:hover::before, .button:hover::after {
+    height: 410px;
+    width: 410px;
+   }
+   
+   .button:hover {
+    color: rgb(10, 25, 30);
+   }
+   
+   .button:active {
+    filter: brightness(.8);
+   }
+   

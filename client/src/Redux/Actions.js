@@ -3,9 +3,11 @@ import axios from 'axios'
 export const GET_RECIPES = 'GET_RECIPES';
 export const GET_RECIPES_BY_DIET = 'GET_RECIPES_BY_DIET';
 export const GET_RECIPES_ID = 'GET_RECIPES_ID';
-export const GET_DIETS = 'GET_DIETS'
-export const GET_RECIPES_ORDERED = 'GET_RECIPES_ORDERED'
-export const GET_SEARCH_RECIPES = 'GET_SEARCH_RECIPES'
+export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const GET_DIETS = 'GET_DIETS';
+export const GET_RECIPES_ORDERED = 'GET_RECIPES_ORDERED';
+export const GET_SEARCH_RECIPES = 'GET_SEARCH_RECIPES';
+export const POST_RECIPE = 'POST_RECIPE';
 // Todo esto sera de prueba******************************************************
 // let idNum = 1;
 
@@ -383,7 +385,19 @@ export const getAllRecipes = ()=>(
             .then((response) => response.data)
             .then((data) => dispatch({ type: GET_RECIPES, payload: data }));
     } 
-)
+);
+
+export const getRecipesById = (id)=>(
+    function(dispatch){
+        axios.get(`http://localhost:3001/recipes/${id}`)
+            .then((response)=> response.data)
+            .then((data) => dispatch({ type: GET_RECIPES_ID, payload: data }));
+    }
+);
+
+export const cleanDetail = ()=>{
+    return { type: CLEAN_DETAIL, payload:null }
+};
 
 export const getDiets = ()=>(
     function(dispatch){
@@ -402,7 +416,7 @@ export const getRecipesByDiet = (diet)=>(
 );
 
 export const getRecipesOrdered = (recipes,ordering)=>{
-    const { abc, score } = ordering;
+    const { typeOrder, wayOrder } = ordering;
     /* 
     abc: {
         order: A-z || Z-a
@@ -413,16 +427,16 @@ export const getRecipesOrdered = (recipes,ordering)=>{
         on: false || true
     }
      */
-    if(abc.on){
+    if(typeOrder === 'abc'){
         // console.log(ordering)
-        if(abc.order === 'A-z'){
+        if(wayOrder === 'asc'){
             recipes.sort((a,b)=>{
                 if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
                 if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                 return 0
             })
             
-        } else if(abc.order === 'Z-a'){
+        } else if(wayOrder === 'desc'){
             recipes.sort((a,b)=>{
                 if(a.name.toLowerCase() < b.name.toLowerCase()) return 1;
                 if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
@@ -430,16 +444,16 @@ export const getRecipesOrdered = (recipes,ordering)=>{
             });
         }
 
-    }else if(score.on){
-        if(score.order === 'Mayor'){
+    }else if(typeOrder === 'score'){
+        if(wayOrder === 'asc'){
             recipes.sort((a,b)=> b.healthScore - a.healthScore);
-        }else if(score.order === 'Menor'){
+        }else if(wayOrder === 'desc'){
             recipes.sort((a,b)=> a.healthScore - b.healthScore);
         }
     }
     
-    return { type: GET_RECIPES_ORDERED, payload: recipes}
-}
+    return { type: GET_RECIPES_ORDERED, payload: recipes }
+};
 
 export const getSearchRecipes = (word)=>(
     function (dispatch){
@@ -447,4 +461,12 @@ export const getSearchRecipes = (word)=>(
             .then((response) => response.data)
             .then((data) => dispatch({ type: GET_SEARCH_RECIPES, payload: data }))
     }
-)
+);
+
+export const postRecipe = (recipe) =>(
+    function(dispatch){
+        axios.post(`http://localhost:3001/recipes`, recipe)
+            .then((response)=> response.data)
+            .then((data)=> dispatch({ type: POST_RECIPE, payload: data }))
+    }
+);

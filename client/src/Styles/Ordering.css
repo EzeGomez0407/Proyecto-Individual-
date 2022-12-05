@@ -15,19 +15,34 @@
     width: 100%;
     height: 100%;
 }
-.spanSelect{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-right: 10px;
+.span-select{
+    margin: 20px;
 }
-.spanOrder{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.span-select select{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fffa;
+    font-weight: bold;
 }
 .labelChecks{
     display: flex;
     width: 100%;
     justify-content: space-between;
+}
+
+@media (min-width: 600px){
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .contain-Ordering{
+        width: auto;
+        height: auto;
+        margin: 0;
+        align-items: center;
+    }
+    #form-ordering{
+        flex-direction: row;
+        width: 100%;
+    }
 }

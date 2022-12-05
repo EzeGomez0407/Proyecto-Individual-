@@ -3,20 +3,48 @@
     flex-direction: column;
     align-items: center;
     width: 80%;
-    background-color: #fffe;
+    background-color: #000C11;
+    margin: 0 auto;
     margin-bottom: 40px;
-    color: #333;
+    color: #fff;
+    padding: 20px;
+    background: rgba( 255, 255, 255, 0.21 );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 h3{
-    color: #333;
+    color: #fff;
     text-decoration: none;
 }
 .link{
     text-decoration: none;
+    text-align: center;
+}
+.first-circle{
+    width: 19rem;
+    height: 19rem;
+    border-radius: 50%;
+    background-color: #7afc9f77;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.second-circle{
+    width: 17.2rem;
+    height: 17.2rem;
+    border-radius: 50%;
+    background-color: #1EF75B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 img{
-    width: 100%;
-    height: auto;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 50%;
+    object-fit: cover;
 }
 .titleDieta{
     margin-top: 10px;
@@ -25,4 +53,11 @@ img{
 .dietas{
     padding: 0 20px;
     text-align: left;
+}
+@media (min-width: 600px) {
+    .cardReceta{
+        width: 20rem;
+        margin: 30px;
+        padding: 30px;
+    }
 }

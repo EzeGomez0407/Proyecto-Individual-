@@ -17,10 +17,9 @@ const Filter = (props)=>{
     return (
         <>
             <div className='contain-filter'>
-                <span className='title-filter'>filtrar por dieta</span>
                 <form id='formFilter' onChange={(e)=>props.handlerCh(e)}>
-                <select name='diets' form='formFilter' defaultValue='allDiets'>
-                    <option value='allDiets'>All</option>
+                <select name='diets' form='formFilter' defaultValue='allDiets' className='filter'>
+                    <option value='allDiets'>Filtro por dieta</option>
                     {
                         diets.map( diet =>(
                             <option value={diet.name} key={diet.id}>{diet.name}</option>

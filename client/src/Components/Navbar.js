@@ -1,31 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import '../Styles/Nav.css';
 import { GiSeatedMouse } from 'react-icons/gi';
-import { getSearchRecipes } from '../Redux/Actions'
+import { getAllRecipes, getSearchRecipes } from '../Redux/Actions'
 import { useDispatch } from 'react-redux';
 
 const NavBar = (props)=>{
 
     const [search, setSearch] = useState('');
+    const [numCallOrder, setNumCallOrder] = useState(0);
+
     const handlerOnChange = (e)=>{
         const word = e.target.value;
-        setSearch((s) => s = word)
+        setSearch((s) => s = word);
+        setNumCallOrder( n => n + 1);
     }
+
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getSearchRecipes(search));
-    },[search])
+        if(numCallOrder > 0){
+            if(search !== ''){
+                dispatch(getSearchRecipes(search))
+                setNumCallOrder( n => n = 0) 
+            } else {
+                dispatch(getAllRecipes())
+                setNumCallOrder( n => n = 0)
+            }
+        }   
+    },[search, dispatch, numCallOrder])
 
-    return(
+    return(     
         <>
             <nav id='navSearch'>
-                <NavLink to='/'><GiSeatedMouse className='iconHome'/></NavLink>
+                <NavLink to='/recipes'><GiSeatedMouse className='iconHome'/></NavLink>
                 <div className='containAtNav'>
-                    <input type='text' className='inputSearch' id='inputSearch' onChange={handlerOnChange} value={search}/>
-                    <label className='labelSearch'>Busca la receta</label>
+                    <Route exact path={'/recipes'}>
+                        <div className='input-group'>
+                            <input type='text' className='input' onChange={handlerOnChange} value={search} auto='off' placeholder='Busca la receta'/>
+                            {/* <label className='user-label'>Busca la receta</label> */}
+                        </div>
+                    </Route>
                 </div>
+                <Route path='/recipes'>
+                        <NavLink to='/recipes-create' className='link-create'>
+                            <div className='btnPost'>
+                                <p>Crear</p>
+                                <p>Receta</p>
+                            </div>
+                        </NavLink>
+                    </Route>
             </nav>
         </>
     )

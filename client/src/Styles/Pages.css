@@ -8,7 +8,7 @@
 }
 .button-pages{
     background: none;
-    color: #fff;
+    color: #333;
     width: 40px;
     height: 40px;
     border: none;
@@ -16,4 +16,12 @@
 .icon-button{
     height: 20px;
     width: auto;
+}
+
+@media (min-width: 600px){
+    .div-pages{
+        width: 10%;
+        margin: 20px 30px;
+        border-radius: 20px;
+    }
 }

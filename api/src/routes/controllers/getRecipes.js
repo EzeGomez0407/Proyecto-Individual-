@@ -16,6 +16,8 @@ const getAllDataBase = async ()=>{
             id: r.id,
             name: r.name,
             healthScore: r.healthScore,
+            instructions: r.instructions,
+            summary: r.summary,
             diets: r.Diets.map(d => d.name),
             createInDB: r.createInDB
         }
@@ -36,8 +38,9 @@ const getAllApi = async ()=>{
             image: r.image,
             healthScore: r.healthScore,
             diets: r.diets,
+            summary: r.summary,
             dishTypes: r.dishTypes,
-            analyzedInstructions: r.analyzedInstructions,
+            instructions: r.analyzedInstructions,
             createInDB: false
         }
     });
@@ -58,9 +61,7 @@ const getAllRecipes = async (wordKey)=>{
     
     const allRecipes =  recipesApi.concat(recipesDb).reduce((arrRecipe, rCurrent) => {
 
-        if(rCurrent.name.toLowerCase().includes(wordKey)){
-            arrRecipe.push(rCurrent);
-        }else if(rCurrent.diets.includes(wordKey.toLowerCase())){
+        if(rCurrent.name.toLowerCase().includes(wordKey.toLowerCase())){
             arrRecipe.push(rCurrent);
         }
         return arrRecipe;

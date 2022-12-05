@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import './Styles/App.css';
 import NavBar from './Components/Navbar';
 import Home from './Components/Home';
+import DetailRecipes from './Components/DetailRecipe';
+import CreateRecipe from './Components/CreateRecipe/CreateRecipe'
 
 function App() {
   return (
@@ -11,9 +13,18 @@ function App() {
         <NavBar/>
       </Route>
 
-      <Route exact path='/'>
+      <Route exact path='/recipes'>
         <Home/>
       </Route>
+
+<Route exact path='/recipes-create'>
+  <CreateRecipe/>
+</Route>
+
+      <Route path='/recipes/:id'>
+        <DetailRecipes/>
+      </Route>
+
     </div>
   );
 }

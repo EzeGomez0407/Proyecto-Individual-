@@ -4,8 +4,7 @@ import '../Styles/Home.css';
 import {
     getAllRecipes,
     getRecipesByDiet,
-    getRecipesOrdered,
-    getSearchRecipes
+    getRecipesOrdered
 } from '../Redux/Actions';
 import Pages from './Pages'
 import Receta from './Recipe';
@@ -18,14 +17,8 @@ const Home = (props)=>{
     const [currRecipe, setCurrRecipe] = useState([]);
     const [currDiet, setCurrDiet] = useState('allDiets');
     const [order, setOrder] = useState({
-        abc: {
-            on: false,
-            order: 'A-z'
-        },
-        score: {
-            on: false,
-            order: 'Mayor'
-        }
+        typeOrder: '',
+        wayOrder: 'asc'
     })
     const [numCallOrder, setNumCallOrder] = useState(0);
 
@@ -50,15 +43,18 @@ const Home = (props)=>{
         setNumCallOrder(n=>n+1);
     }
 // -----------------------------------------------------------------------------------------------
-    useEffect(()=>{
-        console.log('render');
-        // console.log(currDiet)
+useEffect(()=>{
+        if(!recipes.length){
+            dispatch(getAllRecipes())
+            console.log(recipes)
+        }
+        Array.isArray(recipes) && setCurrRecipe(()=> recipes.slice(indexPage*9,until));
+        // console.log(recipes)
         if(numCallOrder > 0){
-            if(order.abc.on || order.score.on){
-                // console.log(recipes)
+            if(order.typeOrder){
                 dispatch(getRecipesOrdered(recipes,order))
                 // setCurrRecipe(()=> recipes.slice(indexPage*9,until));
-            }else if(!order.abc.on || !order.score.on){
+            }else if(!order.typeOrder){
                 if(currDiet === 'allDiets'){
                     dispatch(getAllRecipes())
                 } else {
@@ -66,10 +62,7 @@ const Home = (props)=>{
                 }
             }
             setNumCallOrder(n=>n=0)
-        } 
-        
-        recipes.length === 0 && dispatch(getAllRecipes());
-        setCurrRecipe(()=> recipes.slice(indexPage*9,until));
+        }
     },[indexPage, recipes, dispatch, until, currDiet, order, numCallOrder])
 
 // *********************************************************************************
@@ -77,27 +70,33 @@ const Home = (props)=>{
     return (
         <div className='containerHome'>
             <hr className='hr'/>
-            <Pages
-                handlerNext={nextPageHandler}
-                handlerPrev={prevPageHandler}
-                index={indexPage}
-            />
+            <div className='divPages'>
+                <Pages
+                    handlerNext={nextPageHandler}
+                    handlerPrev={prevPageHandler}
+                    index={indexPage}
+                />
+            </div>
             <div className='contain-orderFilter'>
                 <Filter handlerCh={(e)=>handlerChangeFilter(e)}/>
                 <Ordering changeOrder={handlerChangeOrder}/>
             </div>
 
-            <h1 className='title'>Recetas Populares</h1>
-            {
-                currRecipe.map( (r,i) =>{
-                    return <Receta name={`${r.name} n°${i + 1}`} img={r.image} diets={r.diets} id={r.id} key={i} />
-                })
-            }
-            <Pages
-                handlerNext={nextPageHandler}
-                handlerPrev={prevPageHandler}
-                index={indexPage}
-            />
+            <h1 className='title'>Destacadas</h1>
+            <div className='contentRecipes'>
+                {
+                    Array.isArray(recipes) ? currRecipe.map( (r,i) =>{
+                        return <Receta name={r.name} img={r.image} diets={r.diets} id={r.id} key={i} />
+                    }) : recipes
+                }
+            </div>
+            <div className='divPages'>
+                <Pages
+                    handlerNext={nextPageHandler}
+                    handlerPrev={prevPageHandler}
+                    index={indexPage}
+                />
+            </div>
         </div>
     )
 }
