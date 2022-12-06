@@ -1,0 +1,38 @@
+.landing-page{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)),
+        url(https://i.pinimg.com/564x/97/ab/44/97ab44632182be48081196273e061e66.jpg);
+}
+.title-landing{
+    font-size: 6rem;
+    text-shadow: -10px 10px 8px #777;
+    transform: translateX(170px) translateY(150px);
+}
+.btn-getHome{
+    width: 17rem;
+    height: 5rem;
+    position: absolute;
+    left: 1200px;
+    top: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all .4s;
+    padding: 0 30px;
+    font-size: 2rem;
+    text-decoration: none;
+    color: #eee;
+    border-radius: 20px;
+    background-color: #fff6;
+}
+
+.btn-getHome:hover{
+    background-color: #fffc;
+    box-shadow: 0 0 20px 1px #aaa;
+    color: #444;
+    width: 20rem;
+}

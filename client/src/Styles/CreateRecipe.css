@@ -1,6 +1,5 @@
 .divForm{
     width: 60%;
-    height: 85vh;
     margin: 0 auto;
     margin-top: 20px;
     background: rgba(67, 66, 66, 0.34);
@@ -8,7 +7,7 @@
     -webkit-backdrop-filter: blur( 10px );
     border-radius: 20px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    padding: 30px 20px;
+    padding: 40px 20px;
 }
 .h2-title{
     margin-left: 70px;
@@ -28,12 +27,13 @@
     border-radius: 10px;
     background-color: #fffa;
     font-weight: bold;
+    margin-top: 20px;
 }
 .labelForm{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 40%;
+    width: 60%;
     padding: 10px 40px;
 }
 .input-create{
@@ -134,3 +134,15 @@ textarea{
     filter: brightness(.8);
    }
    
+   .labelForm span {
+    display: none;
+    font-size: 14px;
+    margin-left: 10px;
+   }
+   #summary{
+    margin: 0;
+   }
+   #summaryValid{
+    display: block;
+    color: #ddd;
+   }

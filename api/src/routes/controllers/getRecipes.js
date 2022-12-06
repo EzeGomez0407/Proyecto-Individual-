@@ -27,7 +27,7 @@ const getAllDataBase = async ()=>{
 }
 
 const getAllApi = async ()=>{
-    // const recipesInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=60&addRecipeInformation=true`).then(response => response.data.results);
+    // const recipesInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`).then(response => response.data.results);
     // RECORDAR DESCOMENTAR Y COMENTAR LA DE ABAJO------------------------------------------------------------
     const recipesInfo = await axios.get(API_MOCKED).then(response => response.data.results);
 

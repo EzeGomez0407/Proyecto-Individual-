@@ -17,10 +17,13 @@
     height: 20px;
     width: auto;
 }
+.span-pages{
+    margin: 0 10px;
+}
 
 @media (min-width: 600px){
     .div-pages{
-        width: 10%;
+        width: 25%;
         margin: 20px 30px;
         border-radius: 20px;
     }

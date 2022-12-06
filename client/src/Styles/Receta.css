@@ -40,11 +40,18 @@ h3{
     justify-content: center;
     align-items: center;
 }
-img{
+.img-recipe{
     width: 16rem;
     height: 16rem;
     border-radius: 50%;
     object-fit: cover;
+}
+.img-recipeAux{
+    width: 16rem;
+    height: 16rem;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: brightness(50%);
 }
 .titleDieta{
     margin-top: 10px;

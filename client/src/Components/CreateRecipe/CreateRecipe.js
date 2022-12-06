@@ -17,8 +17,7 @@ const CreateRecipe = (props)=>{
         instructions: '',
         createInDB: true,
         diets: []
-    })
-
+    });
 
     const onChangeDietSelect = (e)=>{
         const diet = e.target.value;
@@ -39,10 +38,8 @@ const CreateRecipe = (props)=>{
         })
     }
     const onClickSubmit = (e)=>{
-        e.preventDefault()
+        // e.preventDefault()
         dispatch(postRecipe(recipe))
-        
-        console.log(recipe);
     }
 
     useEffect(()=>{ 
@@ -55,7 +52,6 @@ const CreateRecipe = (props)=>{
                 }
             ))
         }
-        console.log(recipe);
     },[diets, dispatch, recipe, dietsSelect])
 
     return (
@@ -67,21 +63,24 @@ const CreateRecipe = (props)=>{
                     <label className="labelForm">
                         Nombre de Receta:
                         <input className="input-create" autoComplete="off" type='text' onChange={(e)=> onChangeRecipe(e,setRecipe)} id='name'/>
+                        <span className="valid-name">El nombre de la receta solo puede contener letras o números</span>
                     </label>
 
                     <label className="labelForm">
                         Nivel Saludable:
                         <input className="input-create" autoComplete="off" type="number" id='healthScore' onChange={(e)=> onChangeRecipe(e,setRecipe)}/>
+                        <span className="valid-healthScore">Solo valores de 0 a 100</span>
                     </label>
 
                     <label className="labelForm">
                         Pasos:
-                        <input className="input-create" autoComplete="off" type='text' id="instructions" onChange={(e)=> onChangeRecipe(e,setRecipe)}/>
+                        <textarea className="input-create" autoComplete="off" type='text' id="instructions" onChange={(e)=> onChangeRecipe(e,setRecipe)}/>
                     </label>
 
                     <label className="labelForm">
                         Resumen:
                         <textarea id="summary" onChange={(e)=> onChangeRecipe(e,setRecipe)}/>
+                        <span className="valid-summary" id="summaryValid">Debes agregar un resumen</span>
                     </label>
 
                     <select name='diets' form='create-recipe' defaultValue='none' onChange={onChangeDietSelect} className='select-dieta'>
@@ -106,8 +105,8 @@ const CreateRecipe = (props)=>{
                         }
                     </ul>
 
-                    <NavLink to='/recipes' className='button' onClick={onClickSubmit}>
-                        Crear Receta
+                    <NavLink to='/recipes' >
+                       <button className='button' onClick={onClickSubmit} hidden={true}>Crear Receta</button>
                     </NavLink>
                 </form>
             </div>

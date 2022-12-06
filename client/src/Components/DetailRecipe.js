@@ -3,6 +3,7 @@ import '../Styles/DetailRecipes.css';
 import { cleanDetail, getRecipesById } from '../Redux/Actions'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Loader from "./Loader/Loader";
 
 const DetailRecipes = (props)=>{
 
@@ -13,10 +14,9 @@ const DetailRecipes = (props)=>{
     const imgAux = 'https://previews.123rf.com/images/freshwater/freshwater1711/freshwater171100021/89104479-p%C3%ADxel-404-p%C3%A1gina-de-error-p%C3%A1gina-no-encontrada.jpg'
 
     useEffect(()=>{
-        console.log(recipe);
         !Object.keys(recipe).length && dispatch(getRecipesById(id));
         Object.keys(recipe).length && setSteps( s => {
-            if(!recipe.instructions){
+            if(!recipe.instructions || !recipe.instructions.length){
                 return s = 'Error'
             }else{
                 if(Array.isArray(recipe.instructions)){
@@ -37,6 +37,9 @@ const DetailRecipes = (props)=>{
 
     return (
         <div className="contentDetail">
+            {
+                !recipe.name && <Loader/>
+            }
             <div className="contDetailRecipe">
                 <img src={recipe.image || imgAux} alt="imagen de receta" className="imgRecipe"/>
                 <div className="bodyCard">

@@ -10,6 +10,7 @@ import Pages from './Pages'
 import Receta from './Recipe';
 import Filter from './Filter'
 import Ordering from './Ordering';
+import Loader from './Loader/Loader';
 
 const Home = (props)=>{
 
@@ -69,6 +70,9 @@ useEffect(()=>{
 
     return (
         <div className='containerHome'>
+            {
+                !recipes.length && <Loader/>
+            }
             <hr className='hr'/>
             <div className='divPages'>
                 <Pages
