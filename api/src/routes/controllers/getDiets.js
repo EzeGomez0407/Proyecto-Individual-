@@ -11,8 +11,8 @@ const getDiets = async ()=>{
 
     const diets = await dietsRepeat.reduce((acc,curr)=>{
         !acc.includes(curr) && acc.push(curr)
-        return acc
-    },[])
+        return acc;
+    },[]);
         
     return diets;
 }

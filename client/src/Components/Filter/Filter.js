@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDiets } from '../Redux/Actions';
-import '../Styles/Filter.css';
+import { getDiets } from '../../Redux/Actions';
+import './Filter.css';
 
 const Filter = (props)=>{
 
@@ -10,7 +10,7 @@ const Filter = (props)=>{
 
     useEffect(()=>{
 
-        diets.length === 0 && dispatch(getDiets())
+        !diets.length && dispatch(getDiets())
         
     },[dispatch,diets])
 

@@ -24,11 +24,10 @@ export const onChangeRecipe = (e, set)=>{
 
 const validationForm = (prop, value, btnSend)=>{
     
-    const nameRegex = /^[a-z0-9_-\s]{3,90}$/ig
-    const spanValid = document.querySelector(`.valid-${prop}`)
+    const nameRegex = /^[a-z0-9-\s]{3,90}$/ig
+    const spanValid = document.querySelector(`.valid-${prop}`);
 
     if(prop === 'name'){
-        // const spanValid = document.querySelector('.valid-name');
 
         if(!nameRegex.test(value)){
             spanValid.style.color = 'red';
@@ -42,8 +41,13 @@ const validationForm = (prop, value, btnSend)=>{
         } 
     } else if(prop === 'healthScore'){
         const {min, max} = {min: 0, max: 100};
-
-        if(value < min || value > max){
+        if(!value){
+            spanValid.textContent = 'Debes agregar un puntaje saludable a la receta'
+            spanValid.style.color = 'red';
+            spanValid.style.display = 'block';
+            btnSend.setAttribute('hidden', true);
+            valid.healthScore = false
+        }else if(value < min || value > max){
             spanValid.style.color = 'red';
             spanValid.style.display = 'block';
             btnSend.setAttribute('hidden', true);

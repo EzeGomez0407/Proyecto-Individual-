@@ -6,14 +6,15 @@ import {
     GET_SEARCH_RECIPES,
     GET_RECIPES_ID,
     CLEAN_DETAIL,
-    POST_RECIPE
+    POST_RECIPE,
+    INDEXES
 } from './Actions';
 
 const initialState = {
     recipes: [],
     diets:[],
     recipeSearch: [],
-    // recipeByDiet: [],
+    indexPages: 0,
     recipe_detail: {}
 }
 
@@ -23,6 +24,12 @@ const rootReducer = (state = initialState, actions)=>{
             return {
                 ...state,
                 recipes: actions.payload
+            }
+
+        case INDEXES:
+            return {
+                ...state,
+                indexPages: state.recipes.length / 8
             }
 
         case GET_RECIPES_ID:

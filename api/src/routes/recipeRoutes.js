@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const { Recipe, Diet } = require('../db')
-const { getAllRecipes } = require('./controllers/getRecipes')
-const router = Router();
+const { Recipe, Diet } = require('../db');
+const { getAllRecipes } = require('./controllers/getRecipes');
 
+const router = Router();
 
 router.get('/', async (req,res)=>{
 /* *******\recipes?name=".....": 
@@ -20,7 +20,7 @@ router.get('/', async (req,res)=>{
         res.send(recipes);
         return
     } catch (error) {
-        return res.status(404).send(error.message);
+        return res.status(400).send(error.message);
     }  
 });
 
@@ -33,9 +33,11 @@ router.get('/filter', async (req,res)=>{
         const recipesAll = await getAllRecipes();
         const recipes = recipesAll.filter(r => r.diets.includes(diet))
 
-        return res.send(recipes)
+        // !recipes.length ? res.send('No existen recetas con esas dietas') :
+        res.send(recipes);
+        return
     } catch (error) {
-        return res.send(error.message);
+        return res.status(400).send(error.message);
     }
 });
 
@@ -46,7 +48,7 @@ router.get('/:id', async (req,res)=>{
 *     detalle de receta.
 *    *Incluir los tipos de dietas asociados.
 ***********************************************************/
-    const {id} = req.params
+    const {id} = req.params;
     try {
         const allRecipes = await getAllRecipes();
 
@@ -54,7 +56,7 @@ router.get('/:id', async (req,res)=>{
         recipe.length ? res.send(recipe[0]) :
         res.send('No se encontro la receta');
     } catch (error) {
-        return res.status(404).send(error.message);
+        return res.status(400).send(error.message);
     }
 });
 
@@ -65,7 +67,7 @@ router.post('/', async (req,res)=>{
 *    *Crea una receta en la base de datos relacionada con
 *     sus tipos de dietas.
 ***********************************************************/
-    console.log(req.body);
+    
     const { name,
             summary, 
             healthScore,
@@ -73,13 +75,13 @@ router.post('/', async (req,res)=>{
             createInDB,
             diets,} = req.body;
     try {
-        if(!name || !summary) throw new Error('No se proporcionaron todos los datos para la creacion de una receta.');
+        if(!name || !summary || !healthScore) return res.send('No se proporcionaron todos los datos para la creacion de una receta.');
 
         const newRecipe = await Recipe.create({
             name,
             summary,
             healthScore,
-            instructions: instructions || ['asdaa,asasd'],
+            instructions: instructions,
             createInDB
         });
         
@@ -89,10 +91,9 @@ router.post('/', async (req,res)=>{
         await newRecipe.addDiet(dietsDb);
         
         const recipes = await getAllRecipes();
-        console.log(req.body);
         res.status(200).send(recipes);
     } catch (error) {
-        return res.send(error.message);
+        return res.status(400).send(error.message);
     }
 })
 

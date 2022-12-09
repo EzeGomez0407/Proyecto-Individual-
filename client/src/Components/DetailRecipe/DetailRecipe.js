@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import '../Styles/DetailRecipes.css';
-import { cleanDetail, getRecipesById } from '../Redux/Actions'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Loader from "./Loader/Loader";
+import { cleanDetail, getRecipesById } from '../../Redux/Actions'
+import Loader from "../Loader/Loader";
+import './DetailRecipes.css';
 
 const DetailRecipes = (props)=>{
 
@@ -50,7 +50,7 @@ const DetailRecipes = (props)=>{
                             <span><b>Platos:</b>{recipe.dishTypes} </span>
                         </div>
                         <div className="divDiets">
-                            <span className="spanDiets"><b>Dietas:</b>{recipe.diets}</span>
+                            <span className="spanDiets"><b>Dietas: </b>{recipe.diets + ' '}</span>
                         </div>
                         <div className="healthScore">
                             <span>Health<br/>Score</span>

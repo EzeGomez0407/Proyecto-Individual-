@@ -72,5 +72,4 @@ const getAllRecipes = async (wordKey)=>{
 
 module.exports = {
     getAllRecipes,
-    // getRecipeById
 }

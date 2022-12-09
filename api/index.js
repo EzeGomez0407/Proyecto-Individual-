@@ -45,7 +45,7 @@ const loaderDiets = async()=>{
 // });
 
 server.listen(3001, async ()=>{
-  conn.sync({force:true});
+  conn.sync({alter: false});
   await loaderDiets()
   console.log('Servidor abierto en puerto 3001');
 })

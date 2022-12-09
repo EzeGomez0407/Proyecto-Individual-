@@ -1,5 +1,5 @@
 import React from "react";
-import '../Styles/LandingPage.css';
+import './LandingPage.css';
 import { BiRightArrow } from 'react-icons/bi'
 import { NavLink } from "react-router-dom";
 

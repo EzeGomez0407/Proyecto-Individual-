@@ -1,7 +1,7 @@
 import React from 'react';
 import { BsArrowBarLeft } from 'react-icons/bs';
 import { BsArrowBarRight } from 'react-icons/bs';
-import '../Styles/Pages.css'
+import './Pages.css'
 
 const Pages = (props)=>{
 

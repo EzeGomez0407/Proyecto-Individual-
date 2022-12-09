@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import '../Styles/Nav.css';
-import { GiSeatedMouse } from 'react-icons/gi';
-import { getAllRecipes, getSearchRecipes } from '../Redux/Actions'
 import { useDispatch } from 'react-redux';
+import { GiSeatedMouse } from 'react-icons/gi';
+import { getAllRecipes, getSearchRecipes } from '../../Redux/Actions'
+import './Nav.css';
 
 const NavBar = (props)=>{
 
@@ -14,6 +14,7 @@ const NavBar = (props)=>{
         const word = e.target.value;
         setSearch((s) => s = word);
         setNumCallOrder( n => n + 1);
+        props.handlerInput()
     }
 
     const dispatch = useDispatch();
@@ -38,11 +39,10 @@ const NavBar = (props)=>{
                     <Route exact path={'/recipes'}>
                         <div className='input-group'>
                             <input type='text' className='input' onChange={handlerOnChange} value={search} auto='off' placeholder='Busca la receta'/>
-                            {/* <label className='user-label'>Busca la receta</label> */}
                         </div>
                     </Route>
                 </div>
-                <Route path='/recipes'>
+                    <Route path='/recipes'>
                         <NavLink to='/recipes-create' className='link-create'>
                             <div className='btnPost'>
                                 <p>Crear</p>

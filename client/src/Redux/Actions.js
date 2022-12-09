@@ -4,394 +4,33 @@ export const GET_RECIPES = 'GET_RECIPES';
 export const GET_RECIPES_BY_DIET = 'GET_RECIPES_BY_DIET';
 export const GET_RECIPES_ID = 'GET_RECIPES_ID';
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
-export const GET_DIETS = 'GET_DIETS';
+export const GET_DIETS = 'GET_DIETS'; 
 export const GET_RECIPES_ORDERED = 'GET_RECIPES_ORDERED';
 export const GET_SEARCH_RECIPES = 'GET_SEARCH_RECIPES';
 export const POST_RECIPE = 'POST_RECIPE';
-// Todo esto sera de prueba******************************************************
-// let idNum = 1;
+export const INDEXES =  'INDEXES'
 
-// const idIncr = ()=> idNum++;
-
-// export const getAllRecetas = ()=>{
-//     return [
-//         {
-//             id: idIncr(),
-//             name: `Primer pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `guiso de arroz`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `Estofado`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//         {
-//             id: idIncr(),
-//             name: `pure de papa`,
-//             img: 'https://dam.cocinafacil.com.mx/wp-content/uploads/2021/10/pure-de-papa.jpg',
-//             diets: 'Vegetariana, libre de lacteo, vegana'
-//         },
-//     ]
-// }
 // *****************************************************************************************
 
 export const getAllRecipes = ()=>(
-    function(dispatch){
-        axios.get('http://localhost:3001/recipes')
-            .then((response) => response.data)
-            .then((data) => dispatch({ type: GET_RECIPES, payload: data }));
-    } 
+    async function(dispatch){
+        try {
+            const recipes = (await axios.get('http://localhost:3001/recipes')).data;
+            dispatch({ type: GET_RECIPES, payload: recipes });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 );
 
 export const getRecipesById = (id)=>(
-    function(dispatch){
-        axios.get(`http://localhost:3001/recipes/${id}`)
-            .then((response)=> response.data)
-            .then((data) => dispatch({ type: GET_RECIPES_ID, payload: data }));
+    async function(dispatch){
+        try {
+            const recipeById = (await axios.get(`http://localhost:3001/recipes/${id}`)).data;
+            dispatch({ type: GET_RECIPES_ID, payload: recipeById })
+        } catch (error) {
+            console.log(error);
+        }
     }
 );
 
@@ -400,33 +39,30 @@ export const cleanDetail = ()=>{
 };
 
 export const getDiets = ()=>(
-    function(dispatch){
-        axios.get('http://localhost:3001/diets')
-            .then((response) => response.data)
-            .then((data) => dispatch({ type: GET_DIETS, payload: data }));
+    async function(dispatch){
+        try {
+            const diets = (await axios.get('http://localhost:3001/diets')).data;
+            dispatch({ type: GET_DIETS, payload: diets})
+        } catch (error) {
+            console.log(error);
+        }
     }
 );
 
 export const getRecipesByDiet = (diet)=>(
-    function(dispatch){
-        axios.get(`http://localhost:3001/recipes/filter?diet=${diet}`)
-            .then((response) => response.data)
-            .then((data) => dispatch({ type: GET_RECIPES_BY_DIET, payload: data }))
+    async function(dispatch){
+        try {
+            const recipesByDiets = (await axios.get(`http://localhost:3001/recipes/filter?diet=${diet}`)).data;
+            dispatch({ type: GET_RECIPES_BY_DIET, payload: recipesByDiets});
+        } catch (error) {
+            console.log(error);
+        }
     }
 );
 
 export const getRecipesOrdered = (recipes,ordering)=>{
     const { typeOrder, wayOrder } = ordering;
-    /* 
-    abc: {
-        order: A-z || Z-a
-        on: false || true
-    }
-    score: {
-        order: Mayor || Menor
-        on: false || true
-    }
-     */
+
     if(typeOrder === 'abc'){
         // console.log(ordering)
         if(wayOrder === 'asc'){
@@ -455,18 +91,30 @@ export const getRecipesOrdered = (recipes,ordering)=>{
     return { type: GET_RECIPES_ORDERED, payload: recipes }
 };
 
-export const getSearchRecipes = (word)=>(
-    function (dispatch){
-        axios.get(`http://localhost:3001/recipes?name=${word}`)
-            .then((response) => response.data)
-            .then((data) => dispatch({ type: GET_SEARCH_RECIPES, payload: data }))
+export const getSearchRecipes = (name)=>(
+    async function(dispatch){
+        try {
+            const recipesByName = (await axios.get(`http://localhost:3001/recipes?name=${name}`)).data;
+            dispatch({ type: GET_SEARCH_RECIPES, payload: recipesByName});
+        } catch (error) {
+            console.log(error);
+        }
     }
 );
 
 export const postRecipe = (recipe) =>(
-    function(dispatch){
-        axios.post(`http://localhost:3001/recipes`, recipe)
-            .then((response)=> response.data)
-            .then((data)=> dispatch({ type: POST_RECIPE, payload: data }))
+    async function(dispatch){
+        try {
+            const createRecipe = (await axios.post('http://localhost:3001/recipes', recipe)).data;
+            dispatch({ type: POST_RECIPE, payload: createRecipe });
+        } catch (error) {
+            console.log(error);
+        }
     }
 );
+
+export const indexPages = ()=> (
+    { type: INDEXES, payload: null }
+)
+
+

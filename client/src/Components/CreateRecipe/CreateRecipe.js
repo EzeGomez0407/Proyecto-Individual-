@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDiets, postRecipe } from "../../Redux/Actions";
 import { NavLink } from 'react-router-dom'
-import '../../Styles/CreateRecipe.css'
+import './CreateRecipe.css'
 import { onChangeRecipe } from "./onChange";
 
 const CreateRecipe = (props)=>{
@@ -38,13 +38,17 @@ const CreateRecipe = (props)=>{
         })
     }
     const onClickSubmit = (e)=>{
-        // e.preventDefault()
         dispatch(postRecipe(recipe))
     }
 
-    useEffect(()=>{ 
+    
+    const select = document.querySelector('.select-dieta');
+
+    useEffect(()=>{
+        
         !diets.length && dispatch(getDiets());
         if(recipe.diets.length !== dietsSelect.length){
+            if(!dietsSelect.length)select.value = 'none';
              setRecipe(r =>(
                 {
                     ...r,
@@ -52,7 +56,7 @@ const CreateRecipe = (props)=>{
                 }
             ))
         }
-    },[diets, dispatch, recipe, dietsSelect])
+    },[diets, dispatch, recipe, dietsSelect, select])
 
     return (
         <>

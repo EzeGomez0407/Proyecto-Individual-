@@ -1,6 +1,6 @@
 import { React } from 'react';
-import '../Styles/Receta.css';
 import { NavLink } from 'react-router-dom';
+import './Receta.css';
 
 const Receta = (props)=>{
     const imgAux = 'https://www.pngkit.com/png/detail/288-2884380_empty-plate-with-knife-and-fork-canvas-print.png'

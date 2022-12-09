@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import '../Styles/Home.css';
+import './Home.css';
 import {
     getAllRecipes,
     getRecipesByDiet,
     getRecipesOrdered
-} from '../Redux/Actions';
-import Pages from './Pages'
-import Receta from './Recipe';
-import Filter from './Filter'
-import Ordering from './Ordering';
-import Loader from './Loader/Loader';
+} from '../../Redux/Actions';
+import Pages from '../Paging/Pages'
+import Receta from '../Recipe/Recipe';
+import Filter from '../Filter/Filter'
+import Ordering from '../Ordering/Ordering';
+import Loader from '../Loader/Loader';
 
 const Home = (props)=>{
 
@@ -26,7 +26,9 @@ const Home = (props)=>{
     const dispatch = useDispatch();
     const recipes = useSelector(state => state.recipes);
     let until = (indexPage*9) + 9;
+    
 // ---------------------------------MANEJADORES DE EVENTO-------------------------------------
+    props.inputEvent(setIndexPage)
     const nextPageHandler = ()=>{
         until < recipes.length && setIndexPage( index => index + 1);
     }
@@ -47,22 +49,19 @@ const Home = (props)=>{
 useEffect(()=>{
         if(!recipes.length){
             dispatch(getAllRecipes())
-            console.log(recipes)
         }
         Array.isArray(recipes) && setCurrRecipe(()=> recipes.slice(indexPage*9,until));
-        // console.log(recipes)
         if(numCallOrder > 0){
             if(order.typeOrder){
-                dispatch(getRecipesOrdered(recipes,order))
-                // setCurrRecipe(()=> recipes.slice(indexPage*9,until));
+                dispatch(getRecipesOrdered(recipes,order));
             }else if(!order.typeOrder){
                 if(currDiet === 'allDiets'){
-                    dispatch(getAllRecipes())
+                    dispatch(getAllRecipes());
                 } else {
-                    dispatch(getRecipesByDiet(currDiet))
+                    dispatch(getRecipesByDiet(currDiet));
                 }
             }
-            setNumCallOrder(n=>n=0)
+            setNumCallOrder(n=>n=0);
         }
     },[indexPage, recipes, dispatch, until, currDiet, order, numCallOrder])
 

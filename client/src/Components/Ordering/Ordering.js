@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import '../Styles/Ordering.css'
+import './Ordering.css'
 
 const Ordering = (props)=>{
 
@@ -14,7 +14,6 @@ const Ordering = (props)=>{
         setNumCall( n=> n + 1)
         const type = e.target.name;
         const value = e.target.value;
-        console.log(e.target.value);
         
         if(type === ''){
             
@@ -34,7 +33,6 @@ const Ordering = (props)=>{
     }
     useEffect(()=>{
         if(numCall > 0)  ejectOrdering();
-        // setNumCall( n=> n = 0)
     },[order, numCall])
 
     return (

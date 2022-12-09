@@ -1,17 +1,27 @@
 import { React } from 'react';
 import { Route } from 'react-router-dom';
 import './Styles/App.css';
-import NavBar from './Components/Navbar';
-import Home from './Components/Home';
-import DetailRecipes from './Components/DetailRecipe';
+import NavBar from './Components/Navbar/Navbar';
+import Home from './Components/Home/Home';
+import DetailRecipes from './Components/DetailRecipe/DetailRecipe';
 import CreateRecipe from './Components/CreateRecipe/CreateRecipe'
-import LandingPage from './Components/LandingPage'
+import LandingPage from './Components/LandingPage/LandingPage'
 
 function App() {
+  
+  let fnResetPages = '';
+
+  const handlerInputSearch = ()=>{
+    fnResetPages();
+  }
+  const eventInput = (setPaging)=>{
+    fnResetPages = ()=> {setPaging( p => p = 0)}
+  }
+
   return (
     <div className="App">
       <Route path='/'>
-        <NavBar/>
+        <NavBar handlerInput={handlerInputSearch}/>
       </Route>
 
       <Route exact path='/'>
@@ -19,7 +29,7 @@ function App() {
       </Route>
 
       <Route exact path='/recipes'>
-        <Home/>
+        <Home inputEvent={eventInput}/>
       </Route>
 
       <Route exact path='/recipes-create'>
