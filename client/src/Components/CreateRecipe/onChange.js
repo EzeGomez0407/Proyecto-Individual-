@@ -48,6 +48,7 @@ const validationForm = (prop, value, btnSend)=>{
             btnSend.setAttribute('hidden', true);
             valid.healthScore = false
         }else if(value < min || value > max){
+            spanValid.textContent = 'Solo valores de 0 a 100'
             spanValid.style.color = 'red';
             spanValid.style.display = 'block';
             btnSend.setAttribute('hidden', true);
