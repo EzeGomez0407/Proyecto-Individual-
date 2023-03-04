@@ -1,117 +1,169 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-.contentDetail{
-    display: flex;
-    flex-direction: column;
-    margin:0 auto;
-    width: 100%;
-    padding: 30px 0;
-    color: #fff;
+.contentDetail {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  padding: 30px 0;
+  color: #fff;
 }
-.contDetailRecipe{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    width: 90%;
-    padding: 30px 40px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    background: rgba( 255, 255, 255, 0.4 );
-    backdrop-filter: blur( 10px );
-    -webkit-backdrop-filter: blur( 10px );
-    border-radius: 20px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+.contentDetailRecipe {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 90%;
+  padding: 30px 40px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
-.imgRecipe{
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 50%;
+.imgRecipe {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 50%;
 }
-.bodyCard{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-.firstPart{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-    padding: 30px;
-}
-.name-typeDish{
-    width: 70%;
-    text-align: left;
-}
-.nameRecipe{
-    font-size: 2.4rem;
-}
-.healthScore{
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.7)),
-        url(https://media.discordapp.net/attachments/1029124073311195147/1049029788024705075/pngtree-fork-spoon-knife-and-plate-vector-illustration-with-line-hand-drawn-png-image_2076761.png);
-    background-position: center center;
-    background-size: 110%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 0px;
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
+.healthScore {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(https://media.discordapp.net/attachments/1029124073311195147/1049029788024705075/pngtree-fork-spoon-knife-and-plate-vector-illustration-with-line-hand-drawn-png-image_2076761.png);
+  background-position: center center;
+  background-size: 110%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 20px 30px;
+  /* width: 8rem;
+  height: 8rem; */
+  border-radius: 50%;
 }
 .healthScore span {
-    color: #fff;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
 }
-.secondPart{
-    padding: 30px;
-    text-align: left;
+.bodyCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.firstPart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  padding: 30px;
+}
+.nameTypeDish {
+  width: 70%;
+  text-align: left;
+}
+.nameRecipe {
+  font-size: 2.4rem;
+}
+.typeDish {
+  color: #ddd;
 }
 
-.div-instructions{
-    display: flex;
+.spanDiets {
+  color: #ddd;
+}
+.secondPart {
+  padding: 30px;
+  text-align: left;
+}
+
+.div-instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 70px 50px;
+  background-color: #ffffff70;
+  width: 90%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.title-instruc {
+  font-size: 3rem;
+  color: #fff;
+}
+.h3-ingr-elem {
+  color: #fff;
+  font-size: 1.4rem;
+}
+.steps {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 50px;
+}
+.div-elem-ingr {
+  padding-left: 50px;
+}
+.div-ul {
+  padding-left: 40px;
+}
+ul li {
+  text-align: left;
+}
+
+@media (max-width: 1200px) {
+  .contentDetailRecipe {
     flex-direction: column;
+  }
+}
+@media (max-width: 750px) {
+  .contentDetailRecipe {
     align-items: flex-start;
-    padding: 70px 50px;
-    background-color: #FFffff70;
-    width: 90%;
-    margin: 0 auto;
-    background: rgba( 255, 255, 255, 0.4 );
-    border-radius: 20px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-}
-.title-instruc{
-    font-size: 3rem;
-    color: #fff;
-}
-.h3-ingr-elem{
-    color: #fff;
-    font-size: 1.4rem;
-}
-.steps{
+    padding: 20px;
+  }
+  .imgRecipe {
+    width: 200px;
+    height: 200px;
+  }
+  .healthScore {
+    padding: 10px 20px;
+    right: 10px;
+    top: 10px;
+  }
+  .healthScore span {
+    font-size: 16px;
+  }
+  .firstPart {
+    padding: 10px;
+  }
+  .nameRecipe {
+    font-size: 1.7rem;
+  }
+  .secondPart {
+    padding: 10px;
+  }
+  .divSummary {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 50px;
+  }
+  .spanSummary {
+    display: flex;
+  }
 }
-.div-elem-ingr{
-    padding-left: 50px;
-}
-.div-ul{
-    padding-left: 40px;
-}
-ul li{
-    text-align: left;
+@media (max-width: 440px) {
+  .contentDetailRecipe {
+    padding-top: 80px;
+  }
 }
