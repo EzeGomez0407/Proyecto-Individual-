@@ -17,22 +17,22 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn, Diet } = require('./src/db.js');
-const { getDiets } = require('./src/routes/controllers/getDiets.js');
+const server = require("./src/app.js");
+const { conn, Diet } = require("./src/db.js");
+const { getDiets } = require("./src/routes/controllers/getDiets.js");
+const { PORT } = process.env;
 
-
-const loaderDiets = async()=>{
+const loaderDiets = async () => {
   const diets = await getDiets();
 
   try {
-    diets.forEach(async (diet)=>{
-      await Diet.findOrCreate({where: {name: diet}})
+    diets.forEach(async (diet) => {
+      await Diet.findOrCreate({ where: { name: diet } });
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 // Syncing all the models at once.
 // conn.sync({ force: true }).then(() => {
@@ -40,12 +40,12 @@ const loaderDiets = async()=>{
 
 //     await loaderDiets()
 //     console.log('Servidor abierto en puerto 3001'); // eslint-disable-line no-console
-     
+
 //   });
 // });
 
-server.listen(3001, async ()=>{
-  conn.sync({alter: false});
-  await loaderDiets()
-  console.log('Servidor abierto en puerto 3001');
-})
+server.listen(PORT || 3001, async () => {
+  conn.sync({ alter: false });
+  await loaderDiets();
+  console.log("Servidor abierto en puerto 3001");
+});
