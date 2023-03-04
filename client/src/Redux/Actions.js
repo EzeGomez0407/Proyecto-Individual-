@@ -43,7 +43,9 @@ export const cleanDetail = () => {
 export const getDiets = () =>
   async function (dispatch) {
     try {
-      const diets = (await axios.get("http://localhost:3001/diets")).data;
+      const diets = (
+        await axios.get("api-food-henry-3bad.up.railway.app/diets")
+      ).data;
       dispatch({ type: GET_DIETS, payload: diets });
     } catch (error) {
       console.log(error);
@@ -54,7 +56,9 @@ export const getRecipesByDiet = (diet) =>
   async function (dispatch) {
     try {
       const recipesByDiets = (
-        await axios.get(`http://localhost:3001/recipes/filter?diet=${diet}`)
+        await axios.get(
+          `api-food-henry-3bad.up.railway.app/recipes/filter?diet=${diet}`
+        )
       ).data;
       dispatch({ type: GET_RECIPES_BY_DIET, payload: recipesByDiets });
     } catch (error) {
@@ -95,7 +99,9 @@ export const getSearchRecipes = (name) =>
   async function (dispatch) {
     try {
       const recipesByName = (
-        await axios.get(`http://localhost:3001/recipes?name=${name}`)
+        await axios.get(
+          `api-food-henry-3bad.up.railway.app/recipes?name=${name}`
+        )
       ).data;
       dispatch({ type: GET_SEARCH_RECIPES, payload: recipesByName });
     } catch (error) {
@@ -107,7 +113,7 @@ export const postRecipe = (recipe) =>
   async function (dispatch) {
     try {
       const createRecipe = (
-        await axios.post("http://localhost:3001/recipes", recipe)
+        await axios.post("api-food-henry-3bad.up.railway.app/recipes", recipe)
       ).data;
       dispatch({ type: POST_RECIPE, payload: createRecipe });
     } catch (error) {
