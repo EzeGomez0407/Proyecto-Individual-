@@ -12,8 +12,8 @@ const server = express();
 server.name = "API";
 
 const whiteList = [
-  "https://henry-food-one.vercel.app",
-  "http://localhost:3000",
+  "https://henry-food-one.vercel.app/*",
+  "http://localhost:3000/*",
 ];
 
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
