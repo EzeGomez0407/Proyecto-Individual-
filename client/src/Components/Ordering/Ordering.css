@@ -1,48 +1,47 @@
-.contain-Ordering{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 14rem;
-    height: 100%;
-    margin-left: 30px;
+.contain-Ordering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14rem;
+  height: 100%;
 }
-#form-ordering{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    width: 100%;
-    height: 100%;
+#form-ordering {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
 }
-.span-select{
-    margin: 20px;
+.span-select {
+  margin: 20px;
 }
-.span-select select{
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #fffa;
-    font-weight: bold;
+.span-select select {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  font-weight: bold;
 }
-.labelChecks{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+.labelChecks {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
-@media (min-width: 600px){
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    .contain-Ordering{
-        width: auto;
-        height: auto;
-        margin: 0;
-        align-items: center;
-    }
-    #form-ordering{
-        flex-direction: row;
-        width: 100%;
-    }
+@media (min-width: 600px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .contain-Ordering {
+    width: auto;
+    height: auto;
+    margin: 0;
+    align-items: center;
+  }
+  #form-ordering {
+    flex-direction: row;
+    width: 100%;
+  }
 }

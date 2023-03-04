@@ -1,70 +1,91 @@
-.cardReceta{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    background-color: #000C11;
-    margin: 0 auto;
-    margin-bottom: 40px;
-    color: #fff;
-    padding: 20px;
-    background: rgba( 255, 255, 255, 0.21 );
-    backdrop-filter: blur( 10px );
-    -webkit-backdrop-filter: blur( 10px );
-    border-radius: 20px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+.cardReceta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  background-color: #000c11;
+  margin: 0 48px;
+  margin-bottom: 40px;
+  color: #fff;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.21);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
-h3{
-    color: #fff;
-    text-decoration: none;
+h3 {
+  color: #fff;
+  text-decoration: none;
 }
-.link{
-    text-decoration: none;
-    text-align: center;
+.link {
+  text-decoration: none;
+  text-align: center;
 }
-.first-circle{
-    width: 19rem;
-    height: 19rem;
-    border-radius: 50%;
-    background-color: #7afc9f77;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.first-circle {
+  width: 15.2rem;
+  height: 15.2rem;
+  margin: 10px 0;
+  border-radius: 50%;
+  background-color: #7afc9f77;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.second-circle{
-    width: 17.2rem;
-    height: 17.2rem;
-    border-radius: 50%;
-    background-color: #1EF75B;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.second-circle {
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  background-color: #1ef75b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.img-recipe{
-    width: 16rem;
-    height: 16rem;
-    border-radius: 50%;
-    object-fit: cover;
+.contentImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 50%;
 }
-.img-recipeAux{
-    width: 16rem;
-    height: 16rem;
-    border-radius: 50%;
-    object-fit: cover;
-    filter: brightness(50%);
+.img-recipe {
+  height: 100%;
+  width: auto;
+  /* border-radius: 50%; */
+  object-fit: cover;
 }
-.titleDieta{
-    margin-top: 10px;
-    border-bottom: 1px solid #444
+.img-recipeAux {
+  height: 100%;
+  width: auto;
+  /* border-radius: 50%; */
+  object-fit: cover;
+  filter: brightness(50%);
 }
-.dietas{
-    padding: 0 20px;
-    text-align: left;
+.titleDieta {
+  margin-top: 10px;
+  border-bottom: 1px solid #444;
 }
-@media (min-width: 600px) {
-    .cardReceta{
-        width: 20rem;
-        margin: 30px;
-        padding: 30px;
-    }
+.dietas {
+  padding: 0 20px;
+  text-align: left;
+}
+@media (max-width: 750px) {
+  .cardReceta {
+    width: 250px;
+    margin: 10px;
+  }
+  .first-circle {
+    width: 12rem;
+    height: 12rem;
+  }
+  .second-circle {
+    width: 10.5rem;
+    height: 10.5rem;
+  }
+  .contentImage {
+    width: 9.5rem;
+    height: 9.5rem;
+  }
 }

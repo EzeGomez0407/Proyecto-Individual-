@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
 }
 .App {
@@ -7,11 +7,6 @@
   justify-content: center;
   align-items: center;
   text-align: center; */
-  height: 100vh;
-}
-
-@media (min-width: 800px){
-  .App{
-  background-size: contain;
-  }
+  height: 100%;
+  width: 100%;
 }

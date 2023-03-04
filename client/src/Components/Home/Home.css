@@ -1,48 +1,68 @@
-.containerHome{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.containerHome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-.hr{
-    width: 100%;
+.hr {
+  width: 100%;
 }
-.divPages{
-    width: 100%;
-    display: flex;
+.contentRecipesAndFilter {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  height: 100%;
+  padding: 50px 0;
 }
 
-.contain-orderFilter{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.containOrderFilter {
+  position: sticky;
+  top: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(213, 255, 222, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 80px 10px;
+  margin: 130px 0;
+  margin-left: 30px;
+}
+
+.contentRecipesAndPaging {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.divPages {
+  display: flex;
+}
+
+.contentRecipes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 30px;
+  width: 100%;
+}
+@media (max-width: 750px) {
+  .contentRecipesAndFilter {
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    width: 90%;
+  }
+  .containOrderFilter {
+    align-items: center;
     margin: 30px 0;
-}
-
-.contentRecipes{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-@media (min-width: 600px) {
-    .containerHome{
-        width: 100%;
-    }
-    .divPages{
-        justify-content: flex-end;
-    }
-    .contentRecipes{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        padding: 40px;
-    }
-    .contain-orderFilter{
-        justify-content: center;
-        align-items: center;
-    }
+    top: auto;
+    height: auto;
+    position: relative;
+  }
+  .contentRecipes {
+    padding: 10px;
+  }
 }

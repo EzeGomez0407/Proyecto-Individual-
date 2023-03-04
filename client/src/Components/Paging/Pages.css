@@ -1,30 +1,23 @@
-.div-pages{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    background-color: #fff6;
+.div-pages {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #fff6;
+  border-radius: 20px;
 }
-.button-pages{
-    background: none;
-    color: #333;
-    width: 40px;
-    height: 40px;
-    border: none;
+.button-pages {
+  background: none;
+  color: #333;
+  width: 40px;
+  height: 40px;
+  border: none;
 }
-.icon-button{
-    height: 20px;
-    width: auto;
+.icon-button {
+  height: 20px;
+  width: auto;
 }
-.span-pages{
-    margin: 0 10px;
-}
-
-@media (min-width: 600px){
-    .div-pages{
-        width: 25%;
-        margin: 20px 30px;
-        border-radius: 20px;
-    }
+.span-pages {
+  margin: 0 10px;
 }
