@@ -18,6 +18,10 @@
   height: 20px;
   width: auto;
 }
+.icon-button:hover {
+  cursor: pointer;
+  color: #ccc;
+}
 .span-pages {
   margin: 0 10px;
 }

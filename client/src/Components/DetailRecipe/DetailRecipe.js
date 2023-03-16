@@ -70,7 +70,7 @@ const DetailRecipes = (props) => {
 
           <div className="secondPart">
             <div className="divSummary">
-              <span className="spanSummary">{recipe.summary + ""}</span>
+              <span className="spanSummary">{`${recipe.summary}`}</span>
             </div>
           </div>
         </div>

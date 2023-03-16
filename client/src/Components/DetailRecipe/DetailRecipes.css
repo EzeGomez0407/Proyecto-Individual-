@@ -159,8 +159,8 @@ ul li {
     display: flex;
   }
   .spanSummary {
-    display: flex;
-    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
   }
 }
 @media (max-width: 440px) {
