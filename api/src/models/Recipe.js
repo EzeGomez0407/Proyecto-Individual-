@@ -15,14 +15,14 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     summary: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING(9999),
       allowNull: false,
     },
     healthScore: {
       type: DataTypes.FLOAT,
     },
     instructions: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING(9999),
       // defaultValues: []
     },
     createInDB: {
