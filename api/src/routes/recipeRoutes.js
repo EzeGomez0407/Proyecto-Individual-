@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const { Recipe, Diet } = require('../db');
+// const { Recipe, Diet } = require('../db');
+const { supabase } = require('../../supabaseConfig')
 const { getAllRecipes } = require('./controllers/getRecipes');
 
 const router = Router();
@@ -61,6 +62,8 @@ router.get('/:id', async (req,res)=>{
 });
 
 router.post('/', async (req,res)=>{
+    console.log('hola');
+    
 /* *******\/recipes: 
 *    *Recibe los datos recolectados desde el formulario
 *     controlado de la ruta de creacion de recetas por body.
@@ -75,25 +78,28 @@ router.post('/', async (req,res)=>{
             createInDB,
             diets,} = req.body;
     try {
+        console.log(createInDB);
+        
         if(!name || !summary || !healthScore) return res.send('No se proporcionaron todos los datos para la creacion de una receta.');
-
-        const newRecipe = await Recipe.create({
+        
+        const {data:newRecipe, error} = await supabase.from('Recipe').insert([{
             name,
             summary,
             healthScore,
             instructions: instructions,
-            createInDB
-        });
-        
-        const dietsDb = await Diet.findAll({
-            where: {name: diets}
-        });
-        await newRecipe.addDiet(dietsDb);
+            createInDB,
+            diets
+        }]);
+        if(error) throw error
+
+        console.log(newRecipe);
         
         const recipes = await getAllRecipes();
         res.status(200).send(recipes);
     } catch (error) {
-        return res.status(400).send(error.message);
+        console.log(error);
+        
+        return res.status(400).send(error);
     }
 })
 

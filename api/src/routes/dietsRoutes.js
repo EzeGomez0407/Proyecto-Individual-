@@ -1,12 +1,18 @@
 const { Router } = require('express');
-const { Diet } = require('../db');
-
+const { supabase } = require('../../supabaseConfig')
 const router = Router();
 
 router.get('/', async (req,res)=>{
-    const diets = await Diet.findAll()
 
-    return res.send(diets)
+    try {
+        const {data: diets, error} = await supabase.from('Diet').select('*')
+
+        if(error) throw error
+
+        return res.send(diets)
+    } catch (error) {
+        return res.status(400).send(error)
+    }
 })
 
 module.exports = router;

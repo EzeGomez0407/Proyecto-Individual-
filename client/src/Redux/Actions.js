@@ -10,13 +10,17 @@ export const GET_SEARCH_RECIPES = "GET_SEARCH_RECIPES";
 export const POST_RECIPE = "POST_RECIPE";
 export const INDEXES = "INDEXES";
 
-// *****************************************************************************************
+// ****************************************************************************************
+// const API_URL_RECIPES = 'https://api-food-henry-3bad.up.railway.app/recipes'
+// const API_URL_DIETS = 'https://api-food-henry-3bad.up.railway.app/recipes'
+const API_URL_RECIPES = 'http://localhost:3001/recipes/'
+const API_URL_DIETS = 'http://localhost:3001/diets/'
 
 export const getAllRecipes = () =>
   async function (dispatch) {
     try {
       const recipes = (
-        await axios.get("https://api-food-henry-3bad.up.railway.app/recipes")
+        await axios.get(API_URL_RECIPES)
       ).data;
       dispatch({ type: GET_RECIPES, payload: recipes });
     } catch (error) {
@@ -29,7 +33,7 @@ export const getRecipesById = (id) =>
     try {
       const recipeById = (
         await axios.get(
-          `https://api-food-henry-3bad.up.railway.app/recipes/${id}`
+          `${API_URL_RECIPES + id}`
         )
       ).data;
       dispatch({ type: GET_RECIPES_ID, payload: recipeById });
@@ -46,7 +50,7 @@ export const getDiets = () =>
   async function (dispatch) {
     try {
       const diets = (
-        await axios.get("https://api-food-henry-3bad.up.railway.app/diets")
+        await axios.get(API_URL_DIETS)
       ).data;
       dispatch({ type: GET_DIETS, payload: diets });
     } catch (error) {
@@ -59,7 +63,7 @@ export const getRecipesByDiet = (diet) =>
     try {
       const recipesByDiets = (
         await axios.get(
-          `https://api-food-henry-3bad.up.railway.app/recipes/filter?diet=${diet}`
+          `${API_URL_RECIPES}filter?diet=${diet}`
         )
       ).data;
       dispatch({ type: GET_RECIPES_BY_DIET, payload: recipesByDiets });
@@ -102,7 +106,7 @@ export const getSearchRecipes = (name) =>
     try {
       const recipesByName = (
         await axios.get(
-          `https://api-food-henry-3bad.up.railway.app/recipes?name=${name}`
+          `${API_URL_RECIPES}?name=${name}`
         )
       ).data;
       dispatch({ type: GET_SEARCH_RECIPES, payload: recipesByName });
@@ -116,7 +120,7 @@ export const postRecipe = (recipe) =>
     try {
       const createRecipe = (
         await axios.post(
-          "https://api-food-henry-3bad.up.railway.app/recipes",
+          API_URL_RECIPES,
           recipe
         )
       ).data;

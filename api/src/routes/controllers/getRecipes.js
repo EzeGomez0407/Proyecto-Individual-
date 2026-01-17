@@ -1,35 +1,43 @@
 const axios = require('axios');
-const { Op } = require('sequelize');
-const { Recipe, Diet } = require('../../db');
-const { API_KEY, API_MOCKED } = process.env
+// const { Recipe, Diet } = require('../../db');
+const { API_KEY } = process.env
+const {supabase} = require('../../../supabaseConfig')
 
 const getAllDataBase = async ()=>{
-    const recipesInfo = await Recipe.findAll({
+    /* const recipesInfo = await Recipe.findAll({
         include: {
             model: Diet,
             attributes: ['name']
         }
-    });
-    
-    const recipesFilter = await recipesInfo.map( r => {
-        return {
-            id: r.id,
-            name: r.name,
-            healthScore: r.healthScore,
-            instructions: r.instructions,
-            summary: r.summary,
-            diets: r.Diets.map(d => d.name),
-            createInDB: r.createInDB
-        }
-    })
+    }); */
 
-    return recipesFilter;
+    try {
+        const {data: recipesInfo, error} = await supabase.from('Recipe').select('*')
+        if(error) throw error
+
+        const recipesFilter = recipesInfo.map( r => {
+            return {
+                id: r.id,
+                name: r.name,
+                healthScore: r.healthScore,
+                instructions: r.instructions,
+                summary: r.summary,
+                diets: r.diets,
+                createInDB: r.createInDB
+            }
+        })
+    
+        return recipesFilter;
+    } catch (error) {
+        console.log('error: ', error);
+        return
+    }
 }
 
 const getAllApi = async ()=>{
-    // const recipesInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`).then(response => response.data.results);
+    const recipesInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`).then(response => response.data.results);
     // RECORDAR DESCOMENTAR Y COMENTAR LA DE ABAJO------------------------------------------------------------
-    const recipesInfo = await axios.get(API_MOCKED).then(response => response.data.results);
+    // const recipesInfo = await axios.get(API_MOCKED).then(response => response.data.results);
 
     const recipesFilter = recipesInfo.map( r => {
         return {

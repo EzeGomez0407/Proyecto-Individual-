@@ -1,38 +1,28 @@
-//                       _oo0oo_
-//                      o8888888o
-//                      88" . "88
-//                      (| -_- |)
-//                      0\  =  /0
-//                    ___/`---'\___
-//                  .' \\|     |// '.
-//                 / \\|||  :  |||// \
-//                / _||||| -:- |||||- \
-//               |   | \\\  -  /// |   |
-//               | \_|  ''\---/''  |_/ |
-//               \  .-\__  '-'  ___/-. /
-//             ___'. .'  /--.--\  `. .'___
-//          ."" '<  `.___\_<|>_/___.' >' "".
-//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
-//         \  \ `_.   \_ __\ /__ _/   .-` /  /
-//     =====`-.____`.___ \_____/___.-`___.-'=====
-//                       `=---='
-//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
-const { conn, Diet } = require("./src/db.js");
+// const { conn, Diet } = require("./src/db.js");
 const { getDiets } = require("./src/routes/controllers/getDiets.js");
+const { supabase } = require('./supabaseConfig.js')
 const { PORT } = process.env;
-
+/* 
 const loaderDiets = async () => {
-  const diets = await getDiets();
-
   try {
+    
+    const diets = await getDiets();
+    const {data: dietsDB, error} = await supabase.from('Diet').select('name')
+
+    if(error) throw error
+
     diets.forEach(async (diet) => {
-      await Diet.findOrCreate({ where: { name: diet } });
+      // await Diet.findOrCreate({ where: { name: diet } });
+      if(!dietsDB.includes(diet)) {
+        await supabase.from('Diet').insert([{name: diet}])
+      }
+      return
     });
   } catch (error) {
     console.log(error);
   }
-};
+}; */
 
 // Syncing all the models at once.
 // conn.sync({ force: true }).then(() => {
@@ -45,7 +35,6 @@ const loaderDiets = async () => {
 // });
 
 server.listen(PORT || 3001, async () => {
-  conn.sync({ alter: false });
-  await loaderDiets();
+  // await loaderDiets();
   console.log("Servidor abierto en puerto 3001");
 });

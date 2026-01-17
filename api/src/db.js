@@ -1,13 +1,28 @@
 require("dotenv").config();
-const { Sequelize } = require("sequelize");
-const fs = require("fs");
-const path = require("path");
-const { DB_URL } = process.env;
+const { createClient } = require('@supabase/supabase-js')
+// const { Sequelize } = require("sequelize");
+// const fs = require("fs");
+// const path = require("path");
+const { DB_URL, DB_SERVICEROLE_KEY } = process.env;
 
-const sequelize = new Sequelize(DB_URL, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+// Create a single supabase client for interacting with your database
+const supabase = createClient(DB_URL, DB_SERVICEROLE_KEY)
+
+async function diets() {
+  
+  try {
+    const {data, error} = await supabase.from('Diet').select('*')
+    if(error) throw error
+
+    console.log(data);
+
+  } catch (error) {
+    console.log('error: ', error);
+    
+  }
+}
+
+/* 
 const basename = path.basename(__filename);
 const modelDefiners = [];
 
@@ -42,4 +57,4 @@ Diet.belongsToMany(Recipe, { through: "DietOfRecipe" });
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
-};
+}; */
