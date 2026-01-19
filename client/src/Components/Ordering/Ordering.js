@@ -33,6 +33,7 @@ const Ordering = (props)=>{
     }
     useEffect(()=>{
         if(numCall > 0)  ejectOrdering();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[order, numCall])
 
     return (
