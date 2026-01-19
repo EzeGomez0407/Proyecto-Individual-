@@ -11,10 +11,8 @@ export const POST_RECIPE = "POST_RECIPE";
 export const INDEXES = "INDEXES";
 
 // ****************************************************************************************
-// const API_URL_RECIPES = 'https://api-food-henry-3bad.up.railway.app/recipes'
-// const API_URL_DIETS = 'https://api-food-henry-3bad.up.railway.app/recipes'
-const API_URL_RECIPES = 'http://localhost:3001/recipes/'
-const API_URL_DIETS = 'http://localhost:3001/diets/'
+const API_URL_RECIPES = process.env.REACT_APP_API_URL_RECIPES
+const API_URL_DIETS = process.env.REACT_APP_API_URL_DIETS
 
 export const getAllRecipes = () =>
   async function (dispatch) {
